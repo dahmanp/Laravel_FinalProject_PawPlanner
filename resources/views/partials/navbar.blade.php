@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light ps-3" style="margin-left: 250px;">
     <div class="container-fluid">
-        <span class="navbar-brand">Laravel Dashboard</span>
+        <span class="navbar-brand">PawPlanner</span>
 
         <ul class="navbar-nav ms-auto me-4">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    {{ auth()->user()->name ?? 'User' }}
+                    {{ auth()->user()->first_name ?? 'User' }}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                     <li><a class="dropdown-item" href="#">Profile</a></li>
