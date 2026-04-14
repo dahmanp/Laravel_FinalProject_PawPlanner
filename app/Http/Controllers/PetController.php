@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pet;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PetController extends Controller
@@ -24,7 +25,17 @@ class PetController extends Controller
             'weight' => ['required']
         ]);
 
-        Pet::create($attributes);
+        $pet = Pet::create([
+            'name' => request('name'),
+            'species' => request('species'),
+            'age' => request('age'),
+            'weight' => request('weight'),
+        ]);
+
+        $user = User::find(auth()->id());
+        $user->pets()->attach($pet->id);
+
+        //Pet::create($attributes);
 
         return redirect('/dashboard');
     }

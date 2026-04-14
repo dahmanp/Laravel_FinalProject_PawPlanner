@@ -39,15 +39,20 @@ class AuthController extends Controller
         $attributes = request()->validate([
             'first_name' => ['required'],
             'last_name' => ['required'],
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', Password::min(6), 'confirmed']
         ]);
 
-        $user = User::create($attributes);
+        $user = User::create([
+            'first_name' => $attributes['first_name'],
+            'last_name' => $attributes['last_name'],
+            'email' => $attributes['email'],
+            'password' => bcrypt($attributes['password']),
+        ]);
 
         Auth::login($user);
 
-        return redirect('/');
+        return redirect('/dashboard');
     }
 
     public function logout(Request $request)

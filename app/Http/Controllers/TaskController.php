@@ -12,17 +12,75 @@ class TaskController extends Controller
         return view('tasks.create');
     }
 
-    public function create() {
-        return view('tasks.create');
+    public function create()
+    {
+        $pets = auth()->user()->pets;
+
+        return view('tasks.create', compact('pets'));
     }
 
-    public function store() {
-        $attributes = request()->validate([
-            'title' => ['required'],
-            'description' => ['required'],
+    public function index()
+    {
+        $tasks = Task::where('user_id', auth()->id())->get();
+
+        return view('tasks.index', [
+            'menuItems' => app(DashboardController::class)->index()->getData()['menuItems'],
+            'tasks' => $tasks
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $secondTime = $request->filled('second_notification_time')
+            ? $request->second_notification_time
+            : $request->notification_time;
+            
+        $attributes = $request->validate([
+            'title' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'notification_time' => ['required', 'date_format:H:i'],
+            'multiple_notifs' => ['nullable', 'boolean'],
+            'monday' => ['nullable', 'boolean'],
+            'tuesday' => ['nullable', 'boolean'],
+            'wednesday' => ['nullable', 'boolean'],
+            'thursday' => ['nullable', 'boolean'],
+            'friday' => ['nullable', 'boolean'],
+            'saturday' => ['nullable', 'boolean'],
+            'sunday' => ['nullable', 'boolean'],
+            'pet_id' => ['required'],
         ]);
 
-        Task::create($attributes);
+        $data = $attributes;
+
+        $fields = [
+            'monday','tuesday','wednesday','thursday',
+            'friday','saturday','sunday','multiple_notifs'
+        ];
+
+        foreach ($fields as $field) {
+            $data[$field] = $request->boolean($field);
+        }
+
+        $secondTime = $request->filled('second_notification_time')
+            ? $request->second_notification_time
+            : $request->notification_time;
+
+        Task::create([
+            'title' => $data['title'],
+            'description' => $data['description'],
+            'notification_time' => $data['notification_time'],
+            'second_notification_time' => $secondTime,
+            'multiple_notifs' => $data['multiple_notifs'],
+            'monday' => $data['monday'],
+            'tuesday' => $data['tuesday'],
+            'wednesday' => $data['wednesday'],
+            'thursday' => $data['thursday'],
+            'friday' => $data['friday'],
+            'saturday' => $data['saturday'],
+            'sunday' => $data['sunday'],
+            'user_id' => auth()->id(),
+            'pet_id' => $data['pet_id'],
+        ]);
 
         return redirect('/dashboard');
     }

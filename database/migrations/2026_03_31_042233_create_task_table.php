@@ -13,12 +13,20 @@ return new class extends Migration
     {
         Schema::create('task', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pet_id')->constrained()->onDelete('cascade');
+            $table->foreignIdFor(\App\Models\Pet::class);
+            $table->foreignIdFor(\App\Models\User::class);
             $table->string('title');
             $table->text('description');
             $table->time('notification_time');
-            $table->json('days');
+            $table->boolean('monday');
+            $table->boolean('tuesday');
+            $table->boolean('wednesday');
+            $table->boolean('thursday');
+            $table->boolean('friday');
+            $table->boolean('saturday');
+            $table->boolean('sunday');
             $table->boolean('multiple_notifs')->default(false);
+            $table->time('second_notification_time');
             $table->timestamps();
         });
     }

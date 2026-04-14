@@ -17,9 +17,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/tasks', [App\Http\Controllers\DashboardController::class, 'index'])->name('task.list');
-    // TESTING-----> Route::get('/tasks', function() { return 'Tasks'; })->name('tasks');
-    //Route::get('/calendar', [App\Http\Controllers\DashboardController::class, 'index'])->name('tasks');
+    Route::get('/tasks', [TaskController::class, 'index'])->name('task.list');
+    //Route::get('/calendar', [App\Http\Controllers\DashboardController::class, 'index'])->name('calendar');
     //Route::get('/pets', [App\Http\Controllers\DashboardController::class, 'index'])->name('pets');
 
     // Dummy routes for Users and Reports (replace with real controllers later)
@@ -27,8 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/create', function() { return 'Add user form'; })->name('users.create');
     Route::get('/reports', function() { return 'Reports page'; })->name('reports.index');
 
-    Route::get('/createpet', [PetController::class, 'create']);
+    Route::get('/createpet', [PetController::class, 'create'])->name('createpet');
     Route::post('/createpet', [PetController::class, 'store']);
-    Route::get('/createtask', [TaskController::class, 'create']);
+    Route::get('/createtask', [TaskController::class, 'create'])->name('createtask');
     Route::post('/createtask', [TaskController::class, 'store']);
 });

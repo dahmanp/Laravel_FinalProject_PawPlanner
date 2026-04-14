@@ -31,6 +31,10 @@ class User extends Authenticatable
     }
 
     public function pets() {
-        return $this->belongsToMany(Pet::class);
+        return $this->belongsToMany(Pet::class, 'pet_user');
+    }
+
+    public function tasks() {
+        return $this->hasMany(Task::class);
     }
 }

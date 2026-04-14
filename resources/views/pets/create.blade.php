@@ -43,7 +43,7 @@
                 <label for="weight" class="form-label">Weight</label>
                 <input type="weight" class="form-control" id="weight" name="weight" value="{{ old('weight') }}" required>
               </div>
-              <button type="submit" class="btn btn-primary w-50">Create Pet</button>
+              <button type="submit" class="btn btn-primary w-50">Create Pet</button><a href="/dashboard" class="btn btn-primary w-50">Cancel</a>
             </form>
 
           </div>

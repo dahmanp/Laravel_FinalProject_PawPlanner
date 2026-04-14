@@ -14,4 +14,8 @@ class Task extends Model {
     public function pet() {
         return $this->belongsTo(Pet::class);
     }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

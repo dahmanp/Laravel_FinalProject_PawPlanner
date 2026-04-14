@@ -11,7 +11,7 @@ class Pet extends Model {
     protected $guarded = [];
 
     public function users() {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'pet_user');
     }
 
     public function tasks() {

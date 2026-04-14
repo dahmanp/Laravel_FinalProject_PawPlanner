@@ -13,7 +13,7 @@
       <div class="col-md-4">
         <div class="card shadow-sm">
           <div class="card-body">
-            <h3 class="card-title mb-4 text-center">Create a Task</h3>
+            <h3 class="card-title mb-4 text-center">Edit Task: {{ $task->title }}</h3>
             
             @if ($errors->any())
               <div class="alert alert-danger">
@@ -25,8 +25,9 @@
               </div>
             @endif
 
-            <form method="POST" action="/createtask">
+            <form method="POST" action="/edittask/{{ $task->title }}">
               @csrf
+              @method('PATCH')
               <div class="mb-3">
                 <label for="pet_id" class="form-label">Select Pet</label>
                 <select class="form-control" id="pet_id" name="pet_id" required>
@@ -93,7 +94,7 @@
                   <label for="second_notification_time" class="form-label">Second Reminder Time</label>
                   <input type="time" class="form-control" id="second_notification_time" name="second_notification_time" value="{{ old('second_notification_time') }}">
                 </div>
-              <button type="submit" class="btn btn-primary w-50">Create Task</button><a href="/dashboard" class="btn btn-primary w-50">Cancel</a>
+              <button type="submit" class="btn btn-primary w-50">Edit Task</button><a href="/dashboard" class="btn btn-primary w-50">Cancel</a>
             </form>
 
           </div>

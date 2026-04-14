@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\TaskController;
 
 use Illuminate\Http\Request;
 
@@ -36,16 +37,15 @@ class DashboardController extends Controller
             [
                 'label' => 'Create Pet',
                 'icon' => 'bi bi-plus',
-                'route' => 'dashboard',
+                'route' => 'createpet',
             ],
             [
                 'label' => 'Create Task',
                 'icon' => 'bi bi-plus',
-                'route' => 'dashboard',
+                'route' => 'createtask',
             ],
         ];
 
         return view('dashboard', compact('menuItems'));
-        //THIS IS THE PROBLEM
     }
 }
