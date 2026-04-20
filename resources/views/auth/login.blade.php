@@ -35,7 +35,9 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required>
               </div>
-              <button type="submit" class="btn btn-primary w-50">Login</button><button type="button" onclick="window.location.href='/register'" class="btn btn-primary w-50">Create Account</button>
+              <div class="mb-2 d-flex justify-content-between align-items-center" style="gap: 5px;">
+                  <button type="submit" class="btn btn-primary w-50">Login</button><button type="button" onclick="window.location.href='/register'" class="btn btn-primary w-50">Create Account</button>
+              </div>
             </form>
 
           </div>

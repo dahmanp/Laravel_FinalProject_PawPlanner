@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
@@ -35,6 +36,29 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
+    public function destroy(Request $request) {
+        $user = Auth::user();
+        Auth::logout();
+        $user->delete();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
+    }
+
+    public function edit() {
+        return view('auth.edit', [
+            'menuItems' => app(DashboardController::class)->index()->getData()['menuItems'],
+        ]);
+    }
+
+    public function showProfile() {
+        return view('auth.show', [
+            'menuItems' => app(DashboardController::class)->index()->getData()['menuItems'],
+        ]);
+    }
+
     public function store() {
         $attributes = request()->validate([
             'first_name' => ['required'],
@@ -51,6 +75,23 @@ class AuthController extends Controller
         ]);
 
         Auth::login($user);
+
+        return redirect('/dashboard');
+    }
+
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+
+        $validated = $request->validate([
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'password' => ['required', 'string', 'confirmed'],
+            'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
+        ]);
+
+        $user->fill($validated);
+        $user->save();
 
         return redirect('/dashboard');
     }

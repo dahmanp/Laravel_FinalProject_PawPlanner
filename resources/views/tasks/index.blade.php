@@ -3,8 +3,12 @@
 @section('title', 'Task List')
 
 @section('content')
-    <h1>My Tasks</h1>
-    <div class="mb-3"><a href="/createtask" class="btn btn-primary w-10">Create Task</a></div>
+    <div class="mb-2 d-flex justify-content-between align-items-center" style="gap: 5px;">
+        <h1>My Tasks</h1>
+        <div class="mb-3">
+            <a href="/createtask" class="btn btn-primary">Create Task</a>
+        </div>
+    </div>
 
     @if($tasks->count() == 0)
         <p>No tasks yet.</p>
@@ -34,7 +38,7 @@
                         <span>{{ $task->sunday ? 'Sunday' : ''}}</span>
                     </div>
                 </div>
-                <div class="mb-3"><a href="/dashboard" class="btn btn-primary w-10">Edit Task</a></div>
+                <div class="mb-3"><a href="/tasks/{{ $task->id }}/edit" class="btn btn-primary w-10">Edit Task</a></div>
             </div>
         @endforeach
     @endif

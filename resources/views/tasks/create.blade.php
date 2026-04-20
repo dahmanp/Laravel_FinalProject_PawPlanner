@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Register</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-</head>
-<body class="bg-light d-flex align-items-center" style="height: 100vh;">
+@extends('layouts.app')
 
+@section('title', 'Pet Page')
+
+@section('content')
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-4">
@@ -27,42 +22,46 @@
 
             <form method="POST" action="/createtask">
               @csrf
-              <div class="mb-3">
-                <label for="pet_id" class="form-label">Select Pet</label>
-                <select class="form-control" id="pet_id" name="pet_id" required>
-                  <option value="">-- Select a Pet --</option>
+              <div style="display: flex; gap: 5px;">
+                <div class="mb-3">
+                  <label for="pet_id" class="form-label">Select Pet</label>
+                  <select class="form-control" id="pet_id" name="pet_id" required>
+                    <option value="">-- Select a Pet --</option>
 
-                  @foreach ($pets as $pet)
-                    <option value="{{ $pet->id }}" {{ old('pet_id') == $pet->id ? 'selected' : '' }}>
-                      {{ $pet->name }}
-                    </option>
-                  @endforeach
-
-                </select>
+                    @foreach ($pets as $pet)
+                      <option value="{{ $pet->id }}" {{ old('pet_id') == $pet->id ? 'selected' : '' }}>
+                        {{ $pet->name }}
+                      </option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="title" class="form-label">Title</label>
+                  <input type="title" class="form-control" id="title" name="title" value="{{ old('title') }}" required>
+                </div>
               </div>
               <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
-                <input type="title" class="form-control" id="title" name="title" value="{{ old('title') }}" required>
-              </div>
-              <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <input type="description" class="form-control" id="description" name="description" value="{{ old('description') }}" required>
-              </div>
+                  <label for="description" class="form-label">Description</label>
+                  <input type="description" class="form-control" id="description" name="description" value="{{ old('description') }}" required>
+                </div>
               <div class="mb-3">
                 <label for="title" class="form-label">Day(s)</label>
-                <input class="form-check-input" type="checkbox" id="monday" name="monday" value="1" {{ old('monday') ? 'checked' : '' }}>
-                <label class="form-check-label" for="monday">
-                  Monday
-                </label>
-                <input class="form-check-input" type="checkbox" id="tuesday" name="tuesday" value="1" {{ old('tuesday') ? 'checked' : '' }}>
-                <label class="form-check-label" for="tuesday">
-                  Tuesday
-                </label>
-                <input class="form-check-input" type="checkbox" id="wednesday" name="wednesday" value="1" {{ old('wednesday') ? 'checked' : '' }}>
-                <label class="form-check-label" for="wednesday">
-                  Wednesday
-                </label>
-                <input class="form-check-input" type="checkbox" id="thursday" name="thursday" value="1" {{ old('thursday') ? 'checked' : '' }}>
+                <div style="display: flex; gap: 5px;">
+                  <input class="form-check-input" type="checkbox" id="monday" name="monday" value="1" {{ old('monday') ? 'checked' : '' }}>
+                  <label class="form-check-label" for="monday">
+                    Monday
+                  </label>
+                  <input class="form-check-input" type="checkbox" id="tuesday" name="tuesday" value="1" {{ old('tuesday') ? 'checked' : '' }}>
+                  <label class="form-check-label" for="tuesday">
+                    Tuesday
+                  </label>
+                  <input class="form-check-input" type="checkbox" id="wednesday" name="wednesday" value="1" {{ old('wednesday') ? 'checked' : '' }}>
+                  <label class="form-check-label" for="wednesday">
+                    Wednesday
+                  </label>
+                </div>
+                <div style="display: flex; gap: 5px;">
+                  <input class="form-check-input" type="checkbox" id="thursday" name="thursday" value="1" {{ old('thursday') ? 'checked' : '' }}>
                 <label class="form-check-label" for="thursday">
                   Thursday
                 </label>
@@ -78,6 +77,7 @@
                 <label class="form-check-label" for="sunday">
                   Sunday
                 </label>
+                </div>
               </div>
               <div class="mb-3">
                 <label for="notification_time" class="form-label">Reminder Time</label>
@@ -93,7 +93,9 @@
                   <label for="second_notification_time" class="form-label">Second Reminder Time</label>
                   <input type="time" class="form-control" id="second_notification_time" name="second_notification_time" value="{{ old('second_notification_time') }}">
                 </div>
-              <button type="submit" class="btn btn-primary w-50">Create Task</button><a href="/dashboard" class="btn btn-primary w-50">Cancel</a>
+              <div class="mb-2 d-flex justify-content-between align-items-center" style="gap: 5px;">
+                  <button type="submit" class="btn btn-primary w-40">Create Task</button><a href="/dashboard" class="btn btn-primary w-40">Cancel</a>
+              </div>
             </form>
 
           </div>
@@ -102,5 +104,4 @@
     </div>
   </div>
 
-</body>
-</html>
+@endsection

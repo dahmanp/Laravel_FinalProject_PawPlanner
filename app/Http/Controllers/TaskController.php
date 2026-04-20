@@ -4,19 +4,45 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use App\Models\Pet;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
     public function showCreatepetForm()
     {
-        return view('tasks.create');
+        return view('tasks.create', [
+            'menuItems' => app(DashboardController::class)->index()->getData()['menuItems'],
+        ]);
     }
 
     public function create()
     {
         $pets = auth()->user()->pets;
 
-        return view('tasks.create', compact('pets'));
+        return view('tasks.create', compact('pets'), [
+            'menuItems' => app(DashboardController::class)->index()->getData()['menuItems'],
+        ]);
+    }
+
+    public function edit($id)
+    {
+        $task = Task::findOrFail($id);
+        $pets = Auth::user()->pets;
+
+        return view('tasks.edit', compact('task', 'pets'),  [
+            'menuItems' => app(DashboardController::class)->index()->getData()['menuItems'],
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $task = Task::findOrFail($id);
+
+        $task->update($request->all());
+
+        return redirect('/dashboard');
     }
 
     public function index()

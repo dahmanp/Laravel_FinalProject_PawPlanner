@@ -17,7 +17,7 @@
                         <ul class="nav flex-column ms-3">
                             @foreach ($item['children'] as $child)
                                 <li>
-                                    <a href="{{ route($child['route']) }}" class="nav-link text-white {{ request()->routeIs($child['route']) ? 'active fw-bold' : '' }}">
+                                    <a href="{{ route($child['route'], $child['params'] ?? []) }}" class="nav-link text-white {{ request()->routeIs($child['route']) ? 'active fw-bold' : '' }}">
                                         {{ $child['label'] }}
                                     </a>
                                 </li>

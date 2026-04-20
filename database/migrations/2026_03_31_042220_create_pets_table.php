@@ -15,8 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('species');
+            $table->date('birthday')->format('d/m/y');
+            $table->string('sex');
             $table->integer('age');
             $table->float('weight');
+            $table->float('height');
+            $table->string('allergies');
+            $table->string('medicalConditions');
             $table->timestamps();
         });
     }
