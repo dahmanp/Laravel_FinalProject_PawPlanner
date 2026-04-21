@@ -7,8 +7,8 @@
     <div class="row justify-content-center">
       <div class="col-md-4">
         <div class="card shadow-sm">
-          <div class="card-body">
-            <h3 class="card-title mb-4 text-center">Edit Task: {{ $task->title }}</h3>
+          <div class="card-body" style="background-color: #D4BFBB">
+            <h3 class="card-title mb-4 text-center" style="color: #4B3D3D; font-family: 'Bold', sans-serif;">Edit Task: {{ $task->title }}</h3>
             
             @if ($errors->any())
               <div class="alert alert-danger">
@@ -25,8 +25,8 @@
               @method('PUT')
               <div style="display: flex; gap: 5px;">
                 <div class="mb-3">
-                  <label for="pet_id" class="form-label">Select Pet</label>
-                  <select class="form-control" id="pet_id" name="pet_id" required>
+                  <label for="pet_id" class="form-label" style="color: #4B3D3D; font-family: 'Bold', sans-serif;">Select Pet</label>
+                  <select class="form-control" style="background-color: rgba(255, 255, 255, 0.25); color: #4B3D3D; font-family: 'Regular', sans-serif;" id="pet_id" name="pet_id" required>
                     <option value="">-- Select a Pet --</option>
 
                     @foreach ($pets as $pet)
@@ -37,65 +37,65 @@
                   </select>
                 </div>
                 <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="title" class="form-control" id="title" name="title" value="{{ old('title', $task->title) }}" required>
+                  <label for="title" class="form-label" style="color: #4B3D3D; font-family: 'Bold', sans-serif;">Title</label>
+                  <input type="title" style="background-color: rgba(255, 255, 255, 0.25); color: #4B3D3D; font-family: 'Regular', sans-serif; "class="form-control" id="title" name="title" value="{{ old('title', $task->title) }}" required>
                 </div>
               </div>
               <div class="mb-3">
-                  <label for="description" class="form-label">Description</label>
-                  <input type="description" class="form-control" id="description" name="description" value="{{ old('description', $task->description) }}" required>
+                  <label for="description" class="form-label" style="color: #4B3D3D; font-family: 'Bold', sans-serif;">Description</label>
+                  <input type="description" style="background-color: rgba(255, 255, 255, 0.25); color: #4B3D3D; font-family: 'Regular', sans-serif;" class="form-control" id="description" name="description" value="{{ old('description', $task->description) }}" required>
                 </div>
               <div class="mb-3">
-                <label for="title" class="form-label">Day(s)</label>
+                <label for="title" class="form-label" style="color: #4B3D3D; font-family: 'Bold', sans-serif;">Day(s)</label>
                 <div style="display: flex; gap: 5px;">
-                  <input class="form-check-input" type="checkbox" id="monday" name="monday" value="1" {{ old('monday', $task->monday) ? 'checked' : '' }}>
-                  <label class="form-check-label" for="monday">
+                  <input class="form-check-input" style="background-color: rgba(255, 255, 255, 0.25);" type="checkbox" id="monday" name="monday" value="1" {{ old('monday', $task->monday) ? 'checked' : '' }}>
+                  <label style="color: #4B3D3D; font-family: 'Regular', sans-serif;" class="form-check-label" for="monday">
                     Monday
                   </label>
-                  <input class="form-check-input" type="checkbox" id="tuesday" name="tuesday" value="1" {{ old('tuesday', $task->tuesday) ? 'checked' : '' }}>
-                  <label class="form-check-label" for="tuesday">
+                  <input class="form-check-input" style="background-color: rgba(255, 255, 255, 0.25);" type="checkbox" id="tuesday" name="tuesday" value="1" {{ old('tuesday', $task->tuesday) ? 'checked' : '' }}>
+                  <label style="color: #4B3D3D; font-family: 'Regular', sans-serif;" class="form-check-label" for="tuesday">
                     Tuesday
                   </label>
-                  <input class="form-check-input" type="checkbox" id="wednesday" name="wednesday" value="1" {{ old('wednesday', $task->wednesday) ? 'checked' : '' }}>
-                  <label class="form-check-label" for="wednesday">
+                  <input class="form-check-input" style="background-color: rgba(255, 255, 255, 0.25);" type="checkbox" id="wednesday" name="wednesday" value="1" {{ old('wednesday', $task->wednesday) ? 'checked' : '' }}>
+                  <label style="color: #4B3D3D; font-family: 'Regular', sans-serif;" class="form-check-label" for="wednesday">
                     Wednesday
                   </label>
                 </div>
                 <div style="display: flex; gap: 5px;">
-                  <input class="form-check-input" type="checkbox" id="thursday" name="thursday" value="1" {{ old('thursday', $task->thursday) ? 'checked' : '' }}>
-                <label class="form-check-label" for="thursday">
+                  <input class="form-check-input" style="background-color: rgba(255, 255, 255, 0.25);" type="checkbox" id="thursday" name="thursday" value="1" {{ old('thursday', $task->thursday) ? 'checked' : '' }}>
+                <label style="color: #4B3D3D; font-family: 'Regular', sans-serif;" class="form-check-label" for="thursday">
                   Thursday
                 </label>
-                <input class="form-check-input" type="checkbox" id="friday" name="friday" value="1" {{ old('friday', $task->friday) ? 'checked' : '' }}>
-                <label class="form-check-label" for="friday">
+                <input class="form-check-input" style="background-color: rgba(255, 255, 255, 0.25);" type="checkbox" id="friday" name="friday" value="1" {{ old('friday', $task->friday) ? 'checked' : '' }}>
+                <label style="color: #4B3D3D; font-family: 'Regular', sans-serif;" class="form-check-label" for="friday">
                   Friday
                 </label>
-                <input class="form-check-input" type="checkbox" id="saturday" name="saturday" value="1" {{ old('saturday', $task->saturday) ? 'checked' : '' }}>
-                <label class="form-check-label" for="saturday">
+                <input class="form-check-input" style="background-color: rgba(255, 255, 255, 0.25);" type="checkbox" id="saturday" name="saturday" value="1" {{ old('saturday', $task->saturday) ? 'checked' : '' }}>
+                <label style="color: #4B3D3D; font-family: 'Regular', sans-serif;" class="form-check-label" for="saturday">
                   Saturday
                 </label>
-                <input class="form-check-input" type="checkbox" id="sunday" name="sunday" value="1" {{ old('sunday', $task->sunday) ? 'checked' : '' }}>
-                <label class="form-check-label" for="sunday">
+                <input class="form-check-input" style="background-color: rgba(255, 255, 255, 0.25);" type="checkbox" id="sunday" name="sunday" value="1" {{ old('sunday', $task->sunday) ? 'checked' : '' }}>
+                <label style="color: #4B3D3D; font-family: 'Regular', sans-serif;" class="form-check-label" for="sunday">
                   Sunday
                 </label>
                 </div>
               </div>
               <div class="mb-3">
-                <label for="notification_time" class="form-label">Reminder Time</label>
-                <input type="time" class="form-control" id="notification_time" name="notification_time" value="{{ old('notification_time', $task->notification_time) }}" required>
+                <label for="notification_time" class="form-label" style="color: #4B3D3D; font-family: 'Bold', sans-serif;">Reminder Time</label>
+                <input type="time" style="background-color: rgba(255, 255, 255, 0.25); color: #4B3D3D; font-family: 'Regular', sans-serif;" class="form-control" id="notification_time" name="notification_time" value="{{ old('notification_time', $task->notification_time) }}" required>
               </div>
               <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="multiple_notifs" name="multiple_notifs" value="1" {{ old('multiple_notifs', $task->multiple_notifs) ? 'checked' : '' }}>
-                <label class="form-check-label" for="multiple_notifs">
+                <input class="form-check-input" style="background-color: rgba(255, 255, 255, 0.25);" type="checkbox" id="multiple_notifs" name="multiple_notifs" value="1" {{ old('multiple_notifs', $task->multiple_notifs) ? 'checked' : '' }}>
+                <label class="form-check-label" for="multiple_notifs" style="color: #4B3D3D; font-family: 'Bold', sans-serif;">
                   Do you want a second reminder?
                 </label>
               </div>
               <div class="mb-3">
-                  <label for="second_notification_time" class="form-label">Second Reminder Time</label>
-                  <input type="time" class="form-control" id="second_notification_time" name="second_notification_time" value="{{ old('second_notification_time', $task->second_notification_time) }}">
+                  <label for="second_notification_time" class="form-label" style="color: #4B3D3D; font-family: 'Bold', sans-serif;">Second Reminder Time</label>
+                  <input type="time" style="background-color: rgba(255, 255, 255, 0.25); color: #4B3D3D; font-family: 'Regular', sans-serif;" class="form-control" id="second_notification_time" name="second_notification_time" value="{{ old('second_notification_time', $task->second_notification_time) }}">
                 </div>
               <div class="mb-2 d-flex justify-content-between align-items-center" style="gap: 5px;">
-                  <button type="submit" class="btn btn-primary w-40">Update Task</button><a href="/tasks" class="btn btn-primary w-40">Cancel</a>
+                  <button type="submit" class="btn btn-primary w-40" style="color: #4B3D3D; font-family: 'Regular', sans-serif;">Update Task</button><a href="/tasks" class="btn btn-primary w-40" style="color: #4B3D3D; font-family: 'Regular', sans-serif;">Cancel</a>
               </div>
             </form>
 

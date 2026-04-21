@@ -12,7 +12,7 @@
     @if($pets->count() == 0)
         <p>No pets yet.</p>
     @else
-        <div class="d-flex align-items-center justify-content-center" style="gap: 15px">
+        <div class="flex-wrap d-flex align-items-center justify-content-center" style="gap: 15px">
             @foreach($pets as $pet)
             <div class="card mb-2 py-4 px-4 pt-4 pb-2 border-0 d-flex justify-content-center" style="background-color: #D4BFBB; min-width: 500px">
                 <div class="mb-2 d-flex justify-content-between align-items-center" style="gap: 5px;">

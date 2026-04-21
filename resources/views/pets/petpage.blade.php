@@ -5,7 +5,7 @@
 @section('content')
     <div class="mb-2 d-flex justify-content-between align-items-center" style="gap: 5px;">
         <div class="mb-2 d-flex justify-content-between align-items-center" style="gap: 5px;">
-            <img src="{{ asset('storage/' . $pet->icon) }}" width="100" height="100" style="object-fit: cover; border-radius:50%; background-color: #F2F2F2"><h1 style="color: #4B3D3D; font-family: 'Regular', sans-serif;">{{ $pet->name }}</h1>
+            <img src="{{ asset('storage/' . $pet->icon) }}" width="100" height="100" style="object-fit: cover; border-radius:50%; background-color: #F2F2F2"><h1 style="color: #4B3D3D; font-family: 'Bold', sans-serif;">{{ $pet->name }}</h1>
         </div>
         <div class="mb-3">
             <a href="/pets" class="btn btn-outline-primary w-10" style="color: #4B3D3D; font-family: 'Regular', sans-serif;">All Pets</a>
