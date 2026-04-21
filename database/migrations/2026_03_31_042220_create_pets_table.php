@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pets', function (Blueprint $table) {
             $table->id();
+            $table->string('icon');
             $table->string('name');
             $table->string('species');
             $table->date('birthday')->format('d/m/y');
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->float('height');
             $table->string('allergies');
             $table->string('medicalConditions');
+            $table->foreignIdFor(\App\Models\User::class, 'primaryOwner');
             $table->timestamps();
         });
     }

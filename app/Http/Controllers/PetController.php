@@ -33,7 +33,19 @@ class PetController extends Controller
     {
         $pet = Pet::findOrFail($id);
 
-        $pet->update($request->all());
+        $attributes = $request->validate([
+            'name' => ['required'],
+            'species' => ['required'],
+            'age' => ['required'],
+            'birthday' => ['required'],
+            'sex' => ['required'],
+            'weight' => ['required'],
+            'height' => ['required'],
+            'allergies' => ['required'],
+            'medicalConditions' => ['required'],
+        ]);
+
+        $pet->update($attributes);
 
         return redirect('/dashboard');
     }
@@ -57,11 +69,40 @@ class PetController extends Controller
 
     public function share(Pet $pet) {
         $pets = auth()->user()->pets;
+        $friends = auth()->user()->following;
         return view('pets.share', [
+            'friends' => $friends,
             'pet' => $pet,
             'pets' => $pets,
             'menuItems' => app(DashboardController::class)->index()->getData()['menuItems'],
         ]);
+    }
+
+    public function storeShare(Request $request)
+    {
+        $request->validate([
+            'pet_id' => ['required', 'exists:pets,id'],
+            'friend_id' => ['required', 'exists:users,id'],
+        ]);
+        $pet = Pet::findOrFail($request->pet_id);
+        $friend = User::findOrFail($request->friend_id);
+
+        $friend->pets()->syncWithoutDetaching([$pet->id]);
+        return redirect()->route('petpage', $pet->id);
+    }
+
+    public function destroy(Pet $pet)
+    {
+        $pet->users()->detach();
+        $pet->delete();
+        return redirect('/pets');
+    }
+
+    public function removePet(Pet $pet)
+    {
+        $user = auth()->user();
+        $user->pets()->detach($pet->id);
+        return redirect('/pets');
     }
 
     public function store() {
@@ -74,25 +115,17 @@ class PetController extends Controller
             'weight' => ['required'],
             'height' => ['required'],
             'allergies' => ['required'],
-            'medicalConditions' => ['required']
+            'medicalConditions' => ['required'],
+            'icon' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ]);
 
-        $pet = Pet::create([
-            'name' => request('name'),
-            'species' => request('species'),
-            'age' => request('age'),
-            'birthday' => request('birthday'),
-            'sex' => request('sex'),
-            'weight' => request('weight'),
-            'height' => request('height'),
-            'allergies' => request('allergies'),
-            'medicalConditions' => request('medicalConditions'),
-        ]);
-
+        if (request()->hasFile('icon')) {
+            $attributes['icon'] = request()->file('icon')->store('peticons', 'public');
+        }
+        $attributes['primaryOwner'] = auth()->id();
+        $pet = Pet::create($attributes);
         $user = User::find(auth()->id());
         $user->pets()->attach($pet->id);
-
-        //Pet::create($attributes);
 
         return redirect('/dashboard');
     }

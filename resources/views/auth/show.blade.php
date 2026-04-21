@@ -7,7 +7,7 @@
         <h1>Account Details for: {{ auth()->user()->first_name }}</h1>
         <div class="mb-3">
             <a href="/profile/edit" class="btn btn-primary w-10">Edit Account</a>
-            <form action="{{ route('users.destroy') }}" method="POST" onsubmit="return confirm('Are you sure you want to delete your account? This cannot be undone.');" style="display: inline;">
+            <form action="{{ route('users.destroy') }}" method="POST" onsubmit="return confirm('Are you sure you want to delete your account?');" style="display: inline;">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Delete Account</button>

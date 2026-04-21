@@ -1,10 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light ps-3" style="margin-left: 250px;">
+<nav class="navbar navbar-expand-lg navbar-light ps-3" style="background-color: #B09796; margin-left: 250px;">
     <div class="container-fluid">
-        <span class="navbar-brand">PawPlanner</span>
-
         <ul class="navbar-nav ms-auto me-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" style="font-family: 'Bold', sans-serif;" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {{ auth()->user()->first_name ?? 'User' }}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
