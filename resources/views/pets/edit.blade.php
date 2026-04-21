@@ -20,7 +20,7 @@
               </div>
             @endif
 
-            <form method="POST" action="/pets/{{ $pet->id }}">
+            <form method="POST" action="/pets/{{ $pet->id }}" enctype="multipart/form-data">
               @csrf
               @method('PUT')
               <div style="display: flex; gap: 5px;">
@@ -64,6 +64,11 @@
               <div class="mb-3">
                 <label for="medicalConditions" class="form-label">Medical Conditions</label>
                 <input type="string" class="form-control" id="medicalConditions" name="medicalConditions" value="{{ old('medicalConditions', $pet->medicalConditions) }}" required>
+              </div>
+              <div class="mb-3">
+                <img src="{{ asset('storage/' . $pet->icon) }}" alt="Pet Icon" width="50" height="50" class="mb-2">
+                <label for="icon" class="form-label" style="color: #4B3D3D; font-family: 'Bold', sans-serif;">Pet Icon</label>
+                <input type="file" style="color: #4B3D3D; font-family: 'Regular', sans-serif;" class="form-control" id="icon" name="icon" accept="image/*">
               </div>
               <div class="mb-2 d-flex justify-content-between align-items-center" style="gap: 5px;">
                   <button type="submit" class="btn btn-primary w-40">Update Pet</button><a href="/petpage/{{ $pet->id }}" class="btn btn-primary w-40">Cancel</a>

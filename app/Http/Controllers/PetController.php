@@ -43,7 +43,12 @@ class PetController extends Controller
             'height' => ['required'],
             'allergies' => ['required'],
             'medicalConditions' => ['required'],
+            'icon' => 'nullable|image'
         ]);
+
+        if ($request->hasFile('icon')) {
+            $attributes['icon'] = $request->file('icon')->store('peticons', 'public');
+        }
 
         $pet->update($attributes);
 

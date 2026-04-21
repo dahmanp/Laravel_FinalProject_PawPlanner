@@ -10,16 +10,20 @@
     @else
       <ul class="list-group">
         @foreach($users as $user)
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div>
-              <strong>{{ $user->first_name }} {{ $user->last_name }}</strong><br>
-              <small>{{ $user->email }}</small>
+          <div class="card mb-2 py-4 px-4 pt-4 pb-2 border-0 d-flex justify-content-center" style="background-color: #D4BFBB;">
+            <div class="mb-2 d-flex justify-content-between align-items-center" style="gap: 5px;">
+              <div class="d-flex justify-content-between align-items-center" style="gap: 8px;">
+                <h3 style="color: #4B3D3D; font-family: 'Regular', sans-serif;">{{ $user->first_name }} {{ $user->last_name }}</h1>
+              </div>
+            </div>
+            <div class="mb-2" style="display: flex; gap: 5px;">
+              <span style="color: #4B3D3D; font-family: 'Regular', sans-serif;">{{ $user->email }}</span>
             </div>
             <form action="/network/friend/{{ $user->id }}" method="POST">
                 @csrf
                 <button class="btn btn-primary">Add Friend</button>
             </form>
-          </li>
+          </div>
         @endforeach
       </ul>
     @endif
