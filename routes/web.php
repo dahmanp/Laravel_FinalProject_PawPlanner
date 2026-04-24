@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('updatetask');
     Route::get('/createtask', [TaskController::class, 'create'])->name('createtask');
     Route::post('/createtask', [TaskController::class, 'store']);
+    Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
 
     Route::get('/pets', [PetController::class, 'index'])->name('pet.list');
     Route::get('/petpage/{pet}', [PetController::class, 'show'])->name('petpage');

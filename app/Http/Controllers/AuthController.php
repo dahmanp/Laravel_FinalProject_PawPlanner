@@ -64,14 +64,20 @@ class AuthController extends Controller
             'first_name' => ['required'],
             'last_name' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', Password::min(6), 'confirmed']
+            'password' => ['required', Password::min(6), 'confirmed'],
+            'icon' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ]);
+
+        if (request()->hasFile('icon')) {
+            $attributes['icon'] = request()->file('icon')->store('usericons', 'public');
+        }
 
         $user = User::create([
             'first_name' => $attributes['first_name'],
             'last_name' => $attributes['last_name'],
             'email' => $attributes['email'],
             'password' => bcrypt($attributes['password']),
+            'icon' => $attributes['icon'],
         ]);
 
         Auth::login($user);
@@ -88,7 +94,13 @@ class AuthController extends Controller
             'last_name' => ['required', 'string'],
             'password' => ['required', 'string', 'confirmed'],
             'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
+            'icon' => 'nullable|image'
         ]);
+
+        if ($request->hasFile('icon')) {
+            $validated['icon'] = $request->file('icon')->store('usericons', 'public');
+        }
+
 
         $user->fill($validated);
         $user->save();

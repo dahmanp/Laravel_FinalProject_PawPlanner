@@ -35,6 +35,11 @@ class TaskController extends Controller
             'menuItems' => app(DashboardController::class)->index()->getData()['menuItems'],
         ]);
     }
+    public function destroy(Task $task)
+    {
+        $task->delete();
+        return redirect('/tasks');
+    }
 
     public function update(Request $request, $id)
     {
@@ -108,6 +113,6 @@ class TaskController extends Controller
             'pet_id' => $data['pet_id'],
         ]);
 
-        return redirect('/dashboard');
+        return redirect('/tasks');
     }
 }

@@ -6,7 +6,7 @@
     <div class="mb-2 d-flex justify-content-between align-items-center" style="gap: 5px;">
         <h1 style="color: #4B3D3D; font-family: 'Bold', sans-serif;">My Tasks</h1>
         <div class="mb-3">
-            <a href="/createtask" class="btn btn-primary" style="color: #4B3D3D; font-family: 'Regular', sans-serif;">Create Task</a>
+            <a href="/createtask" class="btn" style="background-color: #D4BFBB; color: #4B3D3D; font-family: 'Regular', sans-serif;">Create Task</a>
         </div>
     </div>
 
@@ -21,7 +21,14 @@
                         <img src="{{ asset('storage/' . $task->pet->icon) }}" width="100" height="100" style="object-fit: cover; border-radius:50%; background-color: #F2F2F2">
                         <h3 class="m-0" style="color: #4B3D3D; font-family: 'Bold', sans-serif;">{{ $task->title }}</h3>
                         <div class="ms-auto">
-                            <a href="/tasks/{{ $task->id }}/edit" class="btn btn-primary w-10" style="color: #4B3D3D; font-family: 'Regular', sans-serif;">Edit Task</a>
+                            <a href="/tasks/{{ $task->id }}/edit" class="btn" style="background-color: #D4BFBB; border-color: #98FB98; border-width: 3px; color: #4B3D3D; font-family: 'Regular', sans-serif;">Edit Task</a>
+                            @if(Auth()->user()->id == $task->user->id)
+                                <form method="POST" action="{{ route('tasks.destroy', $task->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn" style="background-color: #D4BFBB; border-color: #ff5733; border-width: 3px; color: #4B3D3D; font-family: 'Regular', sans-serif;">Delete Task</button>
+                                </form>
+                            @endif
                         </div>
                     </div>
                 </div>

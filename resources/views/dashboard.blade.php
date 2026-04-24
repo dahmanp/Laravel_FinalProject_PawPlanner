@@ -6,6 +6,9 @@
     <h1 class="d-flex align-items-center justify-content-center" style="color: #4B3D3D; font-family: 'Regular', sans-serif;">
         <strong>{{ Auth::user()->first_name }}</strong>, welcome to PawPlanner!
     </h1>
+    <div class="mb-2 d-flex justify-content-center align-items-center" style="gap: 7px;">
+        <img src="{{ asset('images/Pawplanner_logo.png') }}" width="470" height="114" alt="Logo">
+    </div>
     <div class="card mb-3 pl-2 pr-2 border-0 d-flex align-items-center justify-content-center" style="background-color: #D4BFBB;">
         <div class="card pt-3 pb-2 border-0 text-center" style="background-color: #B09796; width: 700px;">
             <h3 style="color: #4B3D3D; font-family: 'Bold', sans-serif;">Today's Tasks:</h3>
