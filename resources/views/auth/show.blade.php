@@ -12,7 +12,7 @@
             <form action="{{ route('users.destroy') }}" method="POST" onsubmit="return confirm('Are you sure you want to delete your account?');" style="display: inline;">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete Account</button>
+                <button type="submit" class="btn" style="background-color: #D4BFBB; border-color: #ff5733; border-width: 3px; color: #4B3D3D; font-family: 'Regular', sans-serif;">Delete Account</button>
             </form>
         </div>
     </div>

@@ -20,9 +20,7 @@
                         <img src="{{ asset('storage/' . $pet->icon) }}" width="100" height="100" style="object-fit: cover; border-radius:50%; background-color: #F2F2F2"><h1 style="color: #4B3D3D; font-family: 'Regular', sans-serif;">{{ $pet->name }}</h1>
                     </div>
                     <div class="mb-3">
-                        @if(Auth()->user()->id == $pet->primaryOwner)
-                            <a href="/pets/{{ $pet->id }}/edit" onclick="event.stopPropagation()" class="btn" style="background-color: #F9EAE6; border-color: #98FB98; border-width: 3px; color: #4B3D3D; font-family: 'Regular', sans-serif;">Edit Pet</a>
-                        @endif
+                        <a href="/pets/{{ $pet->id }}/edit" onclick="event.stopPropagation()" class="btn" style="background-color: #F9EAE6; border-color: #98FB98; border-width: 3px; color: #4B3D3D; font-family: 'Regular', sans-serif;">Edit Pet</a>
                     </div>
                 </div>
             </div>

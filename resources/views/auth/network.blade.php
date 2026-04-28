@@ -25,7 +25,7 @@
               <input type="text" style="background-color: rgba(255, 255, 255, 0.25); color: #4B3D3D; font-family: 'Bold', sans-serif;" name="email" class="form-control" placeholder="Enter email." value="{{ request('email') }}">
             </div>
             <div class="mb-2 d-flex justify-content-between align-items-center" style="gap: 5px;">
-              <button type="submit" class="btn btn-primary w-100" style="color: #4B3D3D; font-family: 'Bold', sans-serif;">Search</button>
+              <button type="submit" class="btn btn-primary w-100" style="background-color: #F9EAE6; border-color: #98FB98; border-width: 3px; color: #4B3D3D; font-family: 'Regular', sans-serif;">Search</button>
             </div>
           </form>
 

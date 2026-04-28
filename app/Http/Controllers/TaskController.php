@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Pet;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\TaskAlert;
+use Illuminate\Support\Facades\Mail;
 
 class TaskController extends Controller
 {
@@ -96,7 +98,7 @@ class TaskController extends Controller
             ? $request->second_notification_time
             : $request->notification_time;
 
-        Task::create([
+        $task = Task::create([
             'title' => $data['title'],
             'description' => $data['description'],
             'notification_time' => $data['notification_time'],
@@ -112,6 +114,8 @@ class TaskController extends Controller
             'user_id' => auth()->id(),
             'pet_id' => $data['pet_id'],
         ]);
+
+        //Mail::to($task->user->email)->send(new TaskAlert($task));
 
         return redirect('/tasks');
     }

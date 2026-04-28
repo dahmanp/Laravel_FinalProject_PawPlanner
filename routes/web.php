@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\NetworkController;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     return redirect()->route('login');

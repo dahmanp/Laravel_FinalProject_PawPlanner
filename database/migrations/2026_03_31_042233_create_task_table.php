@@ -27,7 +27,10 @@ return new class extends Migration
             $table->boolean('sunday');
             $table->boolean('multiple_notifs')->default(false);
             $table->time('second_notification_time');
+            $table->dateTime('last_sent_at')->nullable();
+            $table->dateTime('second_last_sent_at')->nullable();
             $table->timestamps();
+            $table->index(['notification_time']);
         });
     }
 
